@@ -1,0 +1,60 @@
+﻿@model KhumaloWeb.Models.ProductSearchViewModel
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<form method="get" asp-controller="Products" asp-action="Index" class="mb-4">
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" class="form-control" onchange="this.form.submit()">
+            <option value="">All</option>
+            @foreach (var category in Model.Categories)
+            {
+                if (category == Model.SelectedCategory)
+                {
+                    <option value="@category" selected="selected">@category</option>
+                }
+                else
+                {
+                    <option value="@category">@category</option>
+                }
+            }
+        </select>
+    </div>
+</form>
+
+<div class="row">
+    @foreach (var item in Model.Products)
+    {
+        <div class="col-md-3 mb-3">
+            <div class="card text-white bg-gold product-card">
+                <div class="image-container">
+                    <img src="@item.Image" alt="image" />
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@item.ProductName</h5>
+                    <p class="card-text">@item.Description</p>
+                    <p><b>Price: R@(item.Price.HasValue ? item.Price.Value.ToString("0.00") : "N/A")</b></p>
+                    <p>Category: @item.Category</p>
+                    <p>Availability: @item.Availability</p>
+                    <div class="button-group mb-2">
+                        <form asp-controller="Transactions" asp-action="Create" method="get" style="display:inline;">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit" class="btn btn-success custom-button mb-2">Add to Cart</button>
+                        </form>
+                    </div>
+                    <div class="button-group">
+                        <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-primary custom-button">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-info custom-button">Details</a>
+                        <form asp-action="Delete" asp-route-id="@item.ProductId" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger custom-button" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    

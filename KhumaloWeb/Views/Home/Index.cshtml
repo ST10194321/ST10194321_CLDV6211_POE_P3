@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* Code to have the text inside an image *@
+<div class="banner-container">
+    <img src="https://www.clayinmotion.com/cdn/shop/files/mugs-banner.png?v=1613531906" alt="Khumalo Craft Banner" class="banner-image">
+    <div class="centered-text">Welcome to Khumalo Craft <h5> Where Crafting Meets Imagination</h5></div>
+
+</div>
+
+@* Container for the lower cards *@
+<div class="cards-container container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="galleryStyle">
+                <div class="card galleryContainer">
+                    <a href="Products">
+                        <img src="~/images/c.png" class="card-img-top" alt="Products">
+                        <h5 class="card-title">Products</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="galleryStyle">
+                <div class="card galleryContainer">
+                    <a href="Home/AboutUs">
+                        <img src="~/images/c.png" class="card-img-top" alt="About Us">
+                        <h5 class="card-title">About us</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-bottom:70px;">
+            <div class="galleryStyle">
+                <div class="card galleryContainer">
+                    <a href="Home/ContactUs">
+                        <img src="~/images/c.png" class="card-img-top" alt="Contact Us">
+                        <h5 class="card-title">Contact us</h5>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<KhumaloWeb.Models.Transaction>
+
+@{
+    ViewData["Title"] = "Transactions";
+}
+
+<div class="TextContainer">
+    @* Code for heading *@
+    <h1 class="display-4" style="font-family:Arial"><b> My Cart</b></h1>
+</div>
+<div> <br /></div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Category</th>
+            <th>Product Price</th>
+            <th></th> 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Product.ProductName</td>
+                <td> @item.Product.Category</td>
+                <td> R @item.Product.Price</td>
+               
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.TransactionsId" method="post" style="display:inline;background-color: #2b1511; ">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this transaction?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+
+<p>
+    <button class="btn custom-button" onclick="return confirm('Are you sure you want to Pay for Cart?');">Pay Now</button>
+</p>
